@@ -1,4 +1,7 @@
-﻿using System;
+using System;
+using System.Linq;
+
+
 
 public class BubbleSort
 {
@@ -15,19 +18,20 @@ public class BubbleSort
         {
             array[i] = int.Parse(Console.ReadLine());
         }
-
         Console.WriteLine("Unsortiertes Array:");
         PrintArray(array);
-
         bubbleSort(array);
-
         Console.WriteLine("Sortiertes Array:");
         PrintArray(array);
     }
 
+
+
     public static void bubbleSort(int[] array)
     {
         int n = array.Length;
+
+
 
         for (int i = 0; i < n - 1; i++)
         {
@@ -44,12 +48,22 @@ public class BubbleSort
         }
     }
 
+
+
     public static void PrintArray(int[] array)
     {
+        int maxValue = array.Max();
+
+
+
         foreach (int element in array)
         {
-            Console.Write(element + " ");
+            int barLength = (int)((double)element / maxValue * 40); // Skaliert die Länge der Balken relativ zum Maximum
+
+            string bar = new string('█', barLength); // Verwende ein Unicode-Blockelement für den Balken
+
+            Console.WriteLine($"{element,3} | {bar}");
+            Console.WriteLine(); // Leerzeile hinzufügen
         }
-        Console.WriteLine();
     }
 }
